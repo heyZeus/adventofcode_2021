@@ -1,4 +1,8 @@
-local pos = {horizontal = 0, depth = 0, aim = 0}
+local pos = {
+    horizontal = 0,
+    depth = 0,
+    aim = 0
+}
 
 for line in io.lines('./input.txt') do
    _, _, dir, num = line:find("(%a+) (%d+)")

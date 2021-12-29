@@ -1,23 +1,25 @@
-local file = assert(io.open('./input.txt', 'r'))
-local content = file:read("*all")
-file:close()
+local data = {
+    lines = {},
+    sums = {},
+    result = 0
+}
 
-local data = {}
-for i in string.gmatch(content, '%S+') do
-    table.insert(data, tonumber(i))
+for line in io.lines('./input.txt') do
+    num = tonumber(line)
+    if num then
+        table.insert(data.lines, num)
+    end
 end
 
-local sums = {}
-for count=3,#data,1 do
-        local currentSum = data[count] + data[count-1] + data[count-2]
-        table.insert(sums, currentSum)
+for count=3, #data.lines, 1 do
+    local sum = data.lines[count] + data.lines[count - 1] + data.lines[count - 2]
+    table.insert(data.sums, sum)
 end
 
-local result = 0
-for count=2,#sums,1 do
-        if sums[count] > sums[count-1] then
-                result = result + 1
-        end
+for count=2, #data.sums, 1 do
+    if data.sums[count] > data.sums[count - 1] then
+        data.result = data.result + 1
+    end
 end
 
-print(result)
+print(data.result)
