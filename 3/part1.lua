@@ -1,5 +1,6 @@
 
 print("Day 3")
+print("")
 
 local data = {
     columns = {},

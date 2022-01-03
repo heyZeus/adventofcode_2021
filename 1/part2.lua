@@ -4,6 +4,9 @@ local data = {
     result = 0
 }
 
+print("Day 1:2")
+print("")
+
 for line in io.lines('./input.txt') do
     num = tonumber(line)
     if num then

@@ -1,5 +1,6 @@
 
-print("Day 1")
+print("Day 1:1")
+print("")
 
 local data = {
   lines = {},
@@ -13,7 +14,6 @@ for line in io.lines('./input.txt') do
     end
 end
 
-local result = 0
 for count=2, #data.lines, 1 do
     if data.lines[count] >= data.lines[count-1] then
         data.result = data.result + 1
