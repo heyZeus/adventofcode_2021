@@ -8,7 +8,7 @@ print("Day 2:1")
 print("")
 
 for line in io.lines('./input.txt') do
-   _, _, dir, num = line:find("(%a+) (%d+)")
+   local _, _, dir, num = line:find("(%a+) (%d+)")
    if dir == 'forward' then
        pos.horizontal = pos.horizontal + num
        pos.depth = pos.depth + (pos.aim * num)
