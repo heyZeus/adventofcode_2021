@@ -12,26 +12,13 @@ local function line_iterator(x1, y1, x2, y2)
    local y_direction = 0
    local increment = -1
 
-   if x1 == x2 and y1 > y2 then
-      y_direction = -1
-   elseif x1 == x2 and y1 < y2 then
-      y_direction = 1
-   elseif y1 == y2 and x1 > x2 then
-      x_direction = -1
-   elseif y1 == y2 and x1 < x2 then
-      x_direction = 1
-   else
-      if x1 > x2 then
-         x_direction = -1
-      else
-         x_direction = 1
-      end
-
-      if y1 > y2 then
-         y_direction = -1
-      else
-         y_direction = 1
-      end
+   if x1 == x2 then -- horizontal
+      y_direction = y1 > y2 and -1 or 1
+   elseif y1 == y2 then  -- vertical
+      x_direction = x1 > x2 and -1 or 1
+   else -- diagonal
+      x_direction = x1 > x2 and -1 or 1
+      y_direction = y1 > y2 and -1 or 1
    end
 
    return function()
@@ -56,7 +43,6 @@ local function input_for(file)
       local _, _, x1, y1, x2, y2 = line:find("(%d+),(%d+)....(%d+),(%d+)")
       if x1 and y1 and x2 and y2 then
          for point in line_iterator(tonumber(x1), tonumber(y1), tonumber(x2), tonumber(y2)) do
-            print(point.id)
             local existing_point = input[point.id]
             if existing_point then
                existing_point.counter = existing_point.counter + 1
@@ -85,4 +71,12 @@ for _, v in pairs(input) do
       count = count + 1
    end
 end
-print(count)
+
+local correct_answer = 24164
+print("Correct answer: ", correct_answer)
+
+print("Actual answer: ", count)
+
+if correct_answer ~= count then
+   print("SADNESS!!!!!!")
+end
